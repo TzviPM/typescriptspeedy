@@ -1,25 +1,71 @@
 {
-    "name": "typescriptspeedy",
-    "displayName": "TypeScriptSpeedy",
-    "description": "A Speedy version of TypeScript",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.30.0"
-    },
-    "categories": [
-        "Programming Languages"
+  "name": "typescriptspeedy",
+  "displayName": "TypeScriptSpeedy",
+  "description": "A Speedy version of TypeScript",
+  "version": "0.0.1",
+  "main": "./dist/client",
+  "scripts": {
+    "vscode:prepublish": "npm run update-vscode && npm run build",
+    "build": "tsc -b",
+    "watch": "tsc -b -w",
+    "update-vscode": "vscode-install",
+    "postinstall": "vscode-install"
+  },
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "tss",
+        "aliases": [
+          "TypeScript Speedy",
+          "tss"
+        ],
+        "extensions": [
+          "tss"
+        ],
+        "configuration": "./language-configuration.json"
+      }
     ],
-    "contributes": {
-        "languages": [{
-            "id": "tss",
-            "aliases": ["TypeScript Speedy", "tss"],
-            "extensions": ["tss"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "tss",
-            "scopeName": "source.tss",
-            "path": "./syntaxes/tss.tmLanguage.json"
-        }]
+    "grammars": [
+      {
+        "language": "tss",
+        "scopeName": "source.tss",
+        "path": "./syntaxes/tss.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "TypeScript Speedy configuration",
+      "properties": {
+        "typescriptSpeedy.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
     }
+  },
+  "activationEvents": [
+    "onLanguage:tss"
+  ],
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "typescript": "^3.2.2",
+    "vscode": "^1.1.26"
+  },
+  "dependencies": {
+    "ts-lsp": "^1.0.0",
+    "vscode-languageclient": "^5.2.1"
+  }
 }
