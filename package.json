@@ -1,0 +1,25 @@
+{
+    "name": "typescriptspeedy",
+    "displayName": "TypeScriptSpeedy",
+    "description": "A Speedy version of TypeScript",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "tss",
+            "aliases": ["TypeScript Speedy", "tss"],
+            "extensions": ["tss"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "tss",
+            "scopeName": "source.tss",
+            "path": "./syntaxes/tss.tmLanguage.json"
+        }]
+    }
+}
